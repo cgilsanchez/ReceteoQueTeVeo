@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ recipe.id ? 'Editar Receta' : 'Nueva Receta' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="recipe.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Ingredientes</ion-label>
+    <ion-input [(ngModel)]="recipe.ingredients"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Descripción</ion-label>
+    <ion-textarea [(ngModel)]="recipe.descriptions"></ion-textarea> <!-- Cambiado a descriptions -->
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Chef</ion-label>
+    <ion-select [(ngModel)]="recipe.chef" interface="popover">
+      <ion-select-option *ngFor="let chef of chefs" [value]="chef.id">
+        {{ chef.name }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  
+
+  <ion-button expand="block" (click)="saveRecipe()">Guardar</ion-button>
+</ion-content>
+

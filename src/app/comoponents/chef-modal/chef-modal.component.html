@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Chefs</h1>
+  <button class="add-button" (click)="openModal()">Agregar Chef</button>
+
+  <div class="chef-grid">
+    <div class="chef-card" *ngFor="let chef of chefs">
+      <h2>{{ chef.name }}</h2>
+      <div class="buttons">
+        <button (click)="editChef(chef)">Editar</button>
+        <button (click)="deleteChef(chef.id)">Borrar</button>
+      </div>
+    </div>
+  </div>
+</div>

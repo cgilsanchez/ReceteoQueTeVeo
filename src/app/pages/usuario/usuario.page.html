@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil de Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="usuario-contenedor">
+    <ion-icon name="person-circle-outline" class="usuario-icono"></ion-icon>
+    <h2>{{ usuario.username }}</h2>
+    <p><strong>Email:</strong> {{ usuario.email }}</p>
+
+    <ion-button expand="block" color="primary" (click)="editarCampo('username')">
+      Editar Nombre
+    </ion-button>
+    <ion-button expand="block" color="primary" (click)="editarCampo('email')">
+      Editar Email
+    </ion-button>
+  </div>
+</ion-content>
