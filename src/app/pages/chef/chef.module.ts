@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ChefPageRoutingModule } from './chef-routing.module';
 
 import { ChefPage } from './chef.page';
+import { ChefCardComponent } from 'src/app/comoponents/chef-card/chef-card.component';
   
 
 @NgModule({
@@ -16,6 +17,6 @@ import { ChefPage } from './chef.page';
     IonicModule,
     ChefPageRoutingModule
   ],
-  declarations: [ChefPage]
+  declarations: [ChefPage, ChefCardComponent],
 })
 export class ChefPageModule {}
