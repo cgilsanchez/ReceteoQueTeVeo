@@ -6,7 +6,7 @@
     <div class="chef-card" *ngFor="let chef of chefs">
       <h2>{{ chef.name }}</h2>
       <div class="buttons">
-        <button (click)="editChef(chef)">Editar</button>
+        <button (click)="updateChef(chef.id, chef.name)">Editar</button> <!-- Corregido -->
         <button (click)="deleteChef(chef.id)">Borrar</button>
       </div>
     </div>

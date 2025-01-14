@@ -5,14 +5,14 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <div class="recipe-grid">
     <app-recipe-card
       *ngFor="let recipe of recipes"
       [recipe]="recipe"
-      (edit)="openModal(recipe)"
-      (delete)="deleteRecipe(recipe.id)"
+      (edit)="openModal($event)"
+      (delete)="deleteRecipe($event)"
     ></app-recipe-card>
-  </ion-list>
+  </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="openModal()">

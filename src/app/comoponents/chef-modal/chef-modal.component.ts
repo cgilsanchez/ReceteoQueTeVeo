@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-chefs',
-  templateUrl: './chefs.component.html',
-  styleUrls: ['./chefs.component.scss'],
+  selector: 'app-chef-modal',
+  templateUrl: './chef-modal.component.html', // Asegúrate de que el archivo existe y está en la misma carpeta
+  styleUrls: ['./chef-modal.component.scss'],
 })
-export class ChefsComponent implements OnInit {
+
+export class ChefModalComponent implements OnInit {
   chefs: any[] = [];
   apiUrl = 'http://localhost:1337/chefs'; // URL de tu endpoint en Strapi
 

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RecipesService {
   private apiUrl = 'http://localhost:1337/api/recetas'; // Endpoint de Strapi
@@ -21,8 +21,9 @@ export class RecipesService {
       data: {
         name: recipe.name,
         ingredients: recipe.ingredients,
-        descriptions: recipe.descriptions // Cambiado a descriptions
-      }
+        descriptions: recipe.descriptions,
+        chef: recipe.chef, // Relación con el chef seleccionado
+      },
     };
 
     if (recipe.id) {
