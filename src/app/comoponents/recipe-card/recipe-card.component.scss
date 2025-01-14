@@ -1,91 +1,78 @@
+    .recipe-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 4fr); /* 4 columnas */
+        gap: 16px; /* Espacio entre las cartas */
+        padding: 16px;
+    }
+    
     .recipe-card {
         border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 16px;
+        border-radius: 12px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         transition: transform 0.2s; /* Animación al pasar el cursor */
         background-color: #fff;
-        
+        overflow: hidden; /* Asegura que los bordes sean redondeados */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    
         &:hover {
         transform: scale(1.03); /* Efecto de zoom */
         }
     
+        .recipe-image {
+        width: 100%; /* Ocupa todo el ancho de la carta */
+        height: 150px; /* Altura fija */
+        object-fit: cover; /* Ajusta la imagen sin recortar */
+        border-bottom: 1px solid #ddd; /* Separador entre imagen y contenido */
+        }
+    
+        .content {
+        padding: 16px;
+        text-align: center;
+    
         h2 {
-        margin: 0;
-        font-size: 20px;
-        color: #333;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 8px;
         }
     
         p {
-        margin: 8px 0;
-        font-size: 14px;
-        color: #666;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 16px;
+        }
         }
     
         .buttons {
         display: flex;
         gap: 8px;
-        margin-top: 16px;
+        justify-content: center;
+        padding: 8px;
     
-        button {
-            background-color: #ffbb00;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
+        ion-button {
+            --background: #3880ff; /* Azul por defecto */
+            --color: white;
             border-radius: 4px;
-            cursor: pointer;
-    
-            &:hover {
-            background-color: #0056b3;
-            }
+            padding: 8px 12px;
     
             &:nth-child(2) {
-            background-color: #dc3545;
-    
-            &:hover {
-                background-color: #a71d2a;
-            }
+            --background: #dc3545; /* Botón rojo para eliminar */
             }
         }
         }
     }
     
-    /* Responsivo para la cuadrícula de las cartas */
-    .recipe-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* Tres columnas por defecto */
-        gap: 16px;
-        padding: 16px;
-    }
-    
-    /* Ajustes para pantallas más pequeñas */
+    /* Responsivo */
     @media (max-width: 1024px) {
         .recipe-grid {
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas en tablets */
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
         }
     }
     
     @media (max-width: 768px) {
         .recipe-grid {
-        grid-template-columns: 1fr; /* Una columna en móviles */
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .recipe-card {
-        padding: 12px;
-        h2 {
-            font-size: 18px;
-        }
-    
-        p {
-            font-size: 12px;
-        }
-    
-        .buttons button {
-            padding: 6px 12px;
-            font-size: 12px;
-        }
+        grid-template-columns: 1fr; /* 1 columna en móviles */
         }
     }
     

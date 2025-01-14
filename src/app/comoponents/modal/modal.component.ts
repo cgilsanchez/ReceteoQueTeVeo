@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ChefService, Chef } from '../../service/chefs.service';
+import { RecipesService } from '../../service/recipes.service';
 
 @Component({
   selector: 'app-modal',
@@ -11,18 +12,21 @@ export class ModalComponent implements OnInit {
   @Input() recipe: any = {
     name: '',
     ingredients: '',
-    description: '',
-    chef: null, // ID del chef asignado
+    descriptions: '',
+    chef: null,
+    image: null, // Para almacenar la imagen seleccionada
   };
-  chefs: Chef[] = []; // Lista de chefs disponibles
+
+  chefs: Chef[] = [];
+  selectedFile: File | null = null; // Archivo seleccionado
 
   constructor(
     private modalController: ModalController,
-    private chefService: ChefService
+    private chefService: ChefService,
+    private recipesService: RecipesService
   ) {}
 
   ngOnInit() {
-    // Cargar la lista de chefs al abrir el modal
     this.chefService.getChefs().subscribe((res) => {
       this.chefs = res.data.map((item: any) => ({
         id: item.id,
@@ -30,19 +34,44 @@ export class ModalComponent implements OnInit {
       }));
     });
   }
-  
+
   close() {
     this.modalController.dismiss();
   }
 
+  // Manejar la selección de archivo
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input?.files?.length) {
+      this.selectedFile = input.files[0];
+    }
+  }
+
   saveRecipe() {
-    // Emitir los datos de la receta al cerrarse
-    if (this.recipe.name && this.recipe.ingredients && this.recipe.chef) {
-      console.log('Guardando receta:', this.recipe);
-      this.modalController.dismiss(this.recipe); // Devuelve la receta al llamador
+    if (this.recipe.name && this.recipe.ingredients && this.recipe.descriptions && this.recipe.chef) {
+      const formData = new FormData();
+      formData.append('data', JSON.stringify({
+        name: this.recipe.name,
+        ingredients: this.recipe.ingredients,
+        descriptions: this.recipe.descriptions,
+        chef: this.recipe.chef,
+      }));
+
+      if (this.selectedFile) {
+        formData.append('files.image', this.selectedFile); // Adjuntar imagen
+      }
+
+      this.recipesService.saveRecipeWithImage(formData).subscribe({
+        next: (res) => {
+          console.log('Receta guardada:', res);
+          this.modalController.dismiss(true);
+        },
+        error: (err) => {
+          console.error('Error al guardar la receta:', err);
+        },
+      });
     } else {
       alert('Por favor, completa todos los campos antes de guardar.');
     }
   }
-  
 }

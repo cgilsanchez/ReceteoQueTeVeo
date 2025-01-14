@@ -31,6 +31,12 @@
       </ion-select-option>
     </ion-select>
   </ion-item>
+
+    <!-- Campo para adjuntar imagen -->
+    <ion-item>
+      <input type="file" (change)="onFileSelected($event)" />
+    </ion-item>
+  
   
 
   <ion-button expand="block" (click)="saveRecipe()">Guardar</ion-button>

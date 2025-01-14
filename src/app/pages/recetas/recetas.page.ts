@@ -32,15 +32,18 @@ export class RecetasPage {
                 id: item.attributes.chef.data.id,
                 name: item.attributes.chef.data.attributes.name,
               }
-            : null, // Si no hay chef asignado, será null
+            : null, // Si no hay chef, será null
+          image: item.attributes.image?.data
+            ? {
+                id: item.attributes.image.data.id,
+                url: item.attributes.image.data.attributes.url, // Incluye la URL de la imagen
+              }
+            : null, // Si no hay imagen, será null
         }));
       },
       error: (err) => console.error('Error al cargar recetas:', err),
     });
   }
-  
-  
-  
   
 
   // Abrir el modal para crear o editar recetas
@@ -50,7 +53,7 @@ export class RecetasPage {
       componentProps: {
         recipe: recipe
           ? { ...recipe }
-          : { name: '', ingredients: '', descriptions: '', chef: null },
+          : { name: '', ingredients: '', descriptions: '', chef: null, image: null },
       },
     });
 
@@ -63,9 +66,24 @@ export class RecetasPage {
     return await modal.present();
   }
 
-  // Guardar o actualizar receta
+  // Guardar o actualizar receta con imagen
   saveRecipe(recipe: any) {
-    this.recipesService.saveRecipe(recipe).subscribe({
+    const formData = new FormData();
+    formData.append(
+      'data',
+      JSON.stringify({
+        name: recipe.name,
+        ingredients: recipe.ingredients,
+        descriptions: recipe.descriptions,
+        chef: recipe.chef,
+      })
+    );
+
+    if (recipe.image) {
+      formData.append('files.image', recipe.image); // Agregar imagen al formulario
+    }
+
+    this.recipesService.saveRecipeWithImage(formData).subscribe({
       next: () => {
         console.log('Receta guardada con éxito');
         this.loadRecipes(); // Recargar la lista de recetas

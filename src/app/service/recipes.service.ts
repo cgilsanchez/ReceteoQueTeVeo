@@ -12,27 +12,12 @@ export class RecipesService {
 
   // Obtener todas las recetas con la relación 'chef' poblada
   getRecipes(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}?populate=chef`);
+    return this.http.get<any>(`${this.apiUrl}?populate=chef,image`);
   }
 
   // Guardar o actualizar una receta
-  saveRecipe(recipe: any): Observable<any> {
-    const payload = {
-      data: {
-        name: recipe.name,
-        ingredients: recipe.ingredients,
-        descriptions: recipe.descriptions,
-        chef: recipe.chef, // ID del chef
-      },
-    };
-
-    if (recipe.id) {
-      // Actualizar receta existente
-      return this.http.put(`${this.apiUrl}/${recipe.id}`, payload);
-    } else {
-      // Crear nueva receta
-      return this.http.post(this.apiUrl, payload);
-    }
+  saveRecipeWithImage(formData: FormData): Observable<any> {
+    return this.http.post(this.apiUrl, formData);
   }
 
   // Eliminar una receta
