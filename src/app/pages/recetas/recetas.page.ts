@@ -30,7 +30,7 @@ export class RecetasPage {
           chef: item.attributes.chef?.data
             ? {
                 id: item.attributes.chef.data.id,
-                ...item.attributes.chef.data.attributes,
+                name: item.attributes.chef.data.attributes.name,
               }
             : null, // Si no hay chef asignado, será null
         }));
@@ -38,6 +38,7 @@ export class RecetasPage {
       error: (err) => console.error('Error al cargar recetas:', err),
     });
   }
+  
   
 
   // Abrir el modal para crear o editar recetas

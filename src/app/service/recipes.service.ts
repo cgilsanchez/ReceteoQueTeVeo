@@ -6,23 +6,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RecipesService {
-  private apiUrl = 'http://localhost:1337/api/recetas'; // Endpoint de Strapi
+  private apiUrl = 'http://localhost:1337/api/recetas'; // URL del endpoint de recetas
 
   constructor(private http: HttpClient) {}
 
-  // Obtener todas las recetas
+  // Obtener todas las recetas con la relación 'chef' poblada
   getRecipes(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+    return this.http.get<any>(`${this.apiUrl}?populate=chef`);
   }
 
-  // Crear o actualizar una receta
+  // Guardar o actualizar una receta
   saveRecipe(recipe: any): Observable<any> {
     const payload = {
       data: {
         name: recipe.name,
         ingredients: recipe.ingredients,
         descriptions: recipe.descriptions,
-        chef: recipe.chef, // Relación con el chef seleccionado
+        chef: recipe.chef, // ID del chef
       },
     };
 
