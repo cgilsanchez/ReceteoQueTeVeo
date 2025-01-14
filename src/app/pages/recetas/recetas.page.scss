@@ -1,98 +1,25 @@
-    .recipe-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        background-color: #fff;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        overflow: hidden; /* Asegura que el contenido no se desborde */
-        text-align: center;
-        transition: transform 0.2s;
-        height: 400px; /* Altura fija para uniformidad */
-        width: 100%; /* Ajusta al espacio disponible */
-    
-        &:hover {
-        transform: scale(1.03); /* Efecto hover */
-        }
-    
-        img {
-        width: 100%; /* Imagen ocupa el ancho completo */
-        height: 150px; /* Altura fija para la imagen */
-        object-fit: cover; /* Mantiene proporciones sin distorsión */
-        border-bottom: 1px solid #ddd;
-        }
-    
-        .content {
-        flex: 1; /* Ocupa el espacio disponible */
-        padding: 12px;
-        overflow: hidden; /* Oculta el contenido adicional */
-        text-overflow: ellipsis; /* Trunca texto largo */
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    
-        h2 {
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 8px;
-            white-space: nowrap; /* Evita múltiples líneas */
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-    
-        p {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 12px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        }
-    
-        .buttons {
-        display: flex;
-        gap: 8px;
-        justify-content: center;
-        padding: 8px;
-    
-        ion-button {
-            --background: #3880ff;
-            --color: white;
-            padding: 6px 12px;
-    
-            &:nth-child(2) {
-            --background: #dc3545;
-            }
-        }
-        }
-    }
-    
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Cuatro columnas */
+    gap: 16px;
+    padding: 16px;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
     .recipe-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr); /* Cuatro columnas */
-        gap: 16px; /* Espaciado entre las cartas */
-        padding: 16px;
+        grid-template-columns: repeat(3, 1fr); /* Tres columnas en tablets */
     }
-    
-    /* Responsivo */
-    @media (max-width: 1024px) {
-        .recipe-grid {
-        grid-template-columns: repeat(3, 1fr);
-        }
+}
+
+@media (max-width: 768px) {
+    .recipe-grid {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas en móviles */
     }
-    
-    @media (max-width: 768px) {
-        .recipe-grid {
-        grid-template-columns: repeat(2, 1fr);
-        }
+}
+
+@media (max-width: 480px) {
+    .recipe-grid {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
     }
-    
-    @media (max-width: 480px) {
-        .recipe-grid {
-        grid-template-columns: 1fr;
-        }
-    }
-    
+}

@@ -24,7 +24,8 @@ export class RecetasPage {
   loadRecipes() {
     this.recipesService.getRecipes().subscribe({
       next: (res) => {
-        this.recipes = res.data.map((item: any) => ({
+        this.recipes = res.data
+        .map((item: any) => ({
           id: item.id,
           ...item.attributes,
           chef: item.attributes.chef?.data
@@ -32,14 +33,12 @@ export class RecetasPage {
                 id: item.attributes.chef.data.id,
                 name: item.attributes.chef.data.attributes.name,
               }
-            : null, // Si no hay chef, será null
+            : null,
           image: item.attributes.image?.data
-            ? {
-                id: item.attributes.image.data.id,
-                url: item.attributes.image.data.attributes.url, // Incluye la URL de la imagen
-              }
-            : null, // Si no hay imagen, será null
-        }));
+            ? item.attributes.image.data.attributes.url
+            : null,
+        }))
+        .filter((recipe: any) => recipe.name && recipe.ingredients && recipe.descriptions);
       },
       error: (err) => console.error('Error al cargar recetas:', err),
     });

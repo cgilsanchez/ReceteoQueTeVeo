@@ -50,12 +50,15 @@ export class ModalComponent implements OnInit {
   saveRecipe() {
     if (this.recipe.name && this.recipe.ingredients && this.recipe.descriptions && this.recipe.chef) {
       const formData = new FormData();
-      formData.append('data', JSON.stringify({
-        name: this.recipe.name,
-        ingredients: this.recipe.ingredients,
-        descriptions: this.recipe.descriptions,
-        chef: this.recipe.chef,
-      }));
+      formData.append(
+        'data',
+        JSON.stringify({
+          name: this.recipe.name,
+          ingredients: this.recipe.ingredients,
+          descriptions: this.recipe.descriptions,
+          chef: this.recipe.chef,
+        })
+      );
 
       if (this.selectedFile) {
         formData.append('files.image', this.selectedFile); // Adjuntar imagen
@@ -64,7 +67,7 @@ export class ModalComponent implements OnInit {
       this.recipesService.saveRecipeWithImage(formData).subscribe({
         next: (res) => {
           console.log('Receta guardada:', res);
-          this.modalController.dismiss(true);
+          this.modalController.dismiss(true); // Indicar que hay cambios
         },
         error: (err) => {
           console.error('Error al guardar la receta:', err);
