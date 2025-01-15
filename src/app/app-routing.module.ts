@@ -17,35 +17,35 @@ const routes: Routes = [
     path: 'recetas',
     loadChildren: () =>
       import('./pages/recetas/recetas.module').then((m) => m.RecetasPageModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], // Protegido por el guard
   },
   {
     path: 'chefs',
     loadChildren: () =>
       import('./pages/chef/chef.module').then((m) => m.ChefPageModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], // Protegido por el guard
   },
   {
     path: 'usuarios',
     loadChildren: () =>
       import('./pages/usuario/usuario.module').then((m) => m.UsuarioPageModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], // Protegido por el guard
   },
   {
     path: 'favorites',
-    loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule)
+    loadChildren: () =>
+      import('./pages/favorites/favorites.module').then((m) => m.FavoritesPageModule),
+    canActivate: [AuthGuard], // Protegido por el guard
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'recetas',
     pathMatch: 'full',
   },
   {
     path: '**',
     redirectTo: 'login',
   },
- 
-
 ];
 
 @NgModule({

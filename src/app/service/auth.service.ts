@@ -30,18 +30,29 @@ export class AuthService {
   }
 
   // Guardar el token
-  async setToken(token: string) {
+  async setToken(token: string): Promise<void> {
+    console.log('Guardando token:', token);
     await this._storage?.set('token', token);
   }
 
   // Obtener el token
-  async getToken() {
-    return await this._storage?.get('token');
+  async getToken(): Promise<string | null> {
+    const token = await this._storage?.get('token');
+    console.log('Token recuperado:', token);
+    return token;
   }
 
-  // Eliminar el token (logout)
-  async logout() {
-    await this._storage?.remove('token'); // Eliminar token del almacenamiento
+  // Verificar si está autenticado
+  async isAuthenticated(): Promise<boolean> {
+    const token = await this.getToken();
+    console.log('Token recuperado:', token);
+    return !!token; // Retorna true si el token existe
   }
   
+
+  // Eliminar el token (logout)
+  async logout(): Promise<void> {
+    console.log('Cerrando sesión');
+    await this._storage?.remove('token'); // Eliminar token del almacenamiento
+  }
 }

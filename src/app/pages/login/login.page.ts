@@ -33,6 +33,7 @@ export class LoginPage {
 
     this.authService.login(identifier, password).subscribe(
       async (response) => {
+        console.log('Inicio de sesión exitoso:', response);
         await this.authService.setToken(response.jwt); // Guardar el token en Storage
         this.errorMessage = null; // Limpiar mensaje de error en caso de éxito
         this.router.navigate(['/recetas']); // Redirigir al listado de recetas
@@ -44,3 +45,4 @@ export class LoginPage {
     );
   }
 }
+

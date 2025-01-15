@@ -16,12 +16,29 @@ export class AppComponent {
     private menuCtrl: MenuController,
     private authService: AuthService
   ) {
-    this.router.events.subscribe((event) => {
+    this.router.events.subscribe(async (event) => {
       if (event instanceof NavigationEnd) {
-        const noMenuRoutes = ['/login', '/register'];
-        this.showMenu = !noMenuRoutes.includes(event.url); // Mostrar el menú si no está en login o register
+        const isAuthenticated = await this.authService.isAuthenticated();
+        this.showMenu = isAuthenticated; // Mostrar el menú solo si está autenticado
       }
     });
+  }
+
+  async ngOnInit(): Promise<void> {
+    await this.checkAuthentication(); // Verificar autenticación al iniciar la aplicación
+  }
+
+  async checkAuthentication(): Promise<void> {
+    // Inicializa el almacenamiento y verifica la autenticación
+    await this.authService.init();
+    const isAuthenticated = await this.authService.isAuthenticated();
+    console.log('¿Está autenticado?:', isAuthenticated);
+
+    if (isAuthenticated) {
+      this.router.navigate(['/recetas']); // Redirige al usuario autenticado
+    } else {
+      this.router.navigate(['/login']); // Si no está autenticado, redirige al login
+    }
   }
 
   closeMenu(): void {
