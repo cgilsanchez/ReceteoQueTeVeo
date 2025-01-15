@@ -10,11 +10,12 @@ import { RecipesService } from '../../service/recipes.service';
 })
 export class ModalComponent implements OnInit {
   @Input() recipe: any = {
+    id: null, // Asegúrate de incluir el ID
     name: '',
     ingredients: '',
     descriptions: '',
     chef: null,
-    image: null, // Para almacenar la imagen seleccionada
+    image: null, // Asegúrate de que este campo se pase correctamente
   };
 
   chefs: Chef[] = [];
@@ -59,15 +60,16 @@ export class ModalComponent implements OnInit {
           chef: this.recipe.chef,
         })
       );
-
+  
       if (this.selectedFile) {
         formData.append('files.image', this.selectedFile); // Adjuntar imagen
       }
-
-      this.recipesService.saveRecipeWithImage(formData).subscribe({
+  
+      // Llamar al servicio con el ID si es una edición
+      this.recipesService.saveRecipeWithImage(formData, this.recipe.id).subscribe({
         next: (res) => {
           console.log('Receta guardada:', res);
-          this.modalController.dismiss(true); // Indicar que hay cambios
+          this.modalController.dismiss(true); // Cierra el modal y recarga las recetas
         },
         error: (err) => {
           console.error('Error al guardar la receta:', err);
@@ -77,4 +79,4 @@ export class ModalComponent implements OnInit {
       alert('Por favor, completa todos los campos antes de guardar.');
     }
   }
-}
+}  
