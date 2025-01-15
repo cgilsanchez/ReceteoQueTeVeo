@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { RecipesService } from '../../service/recipes.service';
 import { ModalComponent } from '../../comoponents/modal/modal.component';
 import { FavoritesService } from 'src/app/service/favorites.service';
+import { RecipeDetailModalComponent } from '../../comoponents/recipe-detail-modal/recipe-detail-modal.component'; // Importar el nuevo modal
 
 @Component({
   selector: 'app-recetas',
@@ -49,7 +50,6 @@ export class RecetasPage {
       error: (err) => console.error('Error al cargar recetas:', err),
     });
   }
-  
 
   // Abrir el modal para crear o editar recetas
   async openModal(recipe: any = null): Promise<void> {
@@ -57,11 +57,11 @@ export class RecetasPage {
       component: ModalComponent,
       componentProps: { recipe: { ...recipe } }, // Pasar la receta actual
     });
-  
+
     modal.onDidDismiss().then((result) => {
       if (result.role === 'saved' && result.data) {
         const updatedRecipe = result.data;
-    
+
         // Encuentra la receta en la lista y actualiza sus datos
         const index = this.recipes.findIndex((r) => r.id === updatedRecipe.id);
         if (index !== -1) {
@@ -72,13 +72,19 @@ export class RecetasPage {
         }
       }
     });
-    
-    
+
     await modal.present();
   }
-  
-  
 
+  // Abrir el modal de detalle de receta
+  async openRecipeDetail(recipe: any): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: RecipeDetailModalComponent,
+      componentProps: { recipe }, // Pasar la receta al modal
+    });
+
+    await modal.present();
+  }
 
   // Eliminar una receta
   deleteRecipe(id: number): void {

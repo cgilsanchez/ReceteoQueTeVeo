@@ -5,7 +5,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { RecetasPageRoutingModule } from './recetas-routing.module';
 import { RecetasPage } from './recetas.page';
-import { RecipeCardModule } from '../../comoponents/recipe-card/recipe-card.module'; // Ajusta la ruta si es necesario
+import { RecipeCardModule } from '../../comoponents/recipe-card/recipe-card.module';
+import { RecipeDetailModalComponent } from '../../comoponents/recipe-detail-modal/recipe-detail-modal.component';
 
 @NgModule({
   imports: [
@@ -15,8 +16,7 @@ import { RecipeCardModule } from '../../comoponents/recipe-card/recipe-card.modu
     RecetasPageRoutingModule,
     RecipeCardModule, 
   ],
-  declarations: [RecetasPage], // Declara la página de recetas
+  declarations: [RecetasPage, RecipeDetailModalComponent], // Declara el modal aquí
 })
 export class RecetasPageModule {}
-
 

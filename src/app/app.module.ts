@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ChefModalComponent } from './comoponents/chef-modal/chef-modal.component';
 
 
+
 @NgModule({
   declarations: [AppComponent,ChefModalComponent],
   imports: [

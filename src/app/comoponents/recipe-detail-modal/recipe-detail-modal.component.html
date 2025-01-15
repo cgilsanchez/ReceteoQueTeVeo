@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title class="recipe-title">{{ recipe.name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon name="close-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="recipe-detail">
+    <div class="image-container">
+      <ion-img *ngIf="recipe.image" [src]="recipe.image" alt="Imagen de receta"></ion-img>
+    </div>
+    <div class="recipe-info">
+      <h2>{{ recipe.name }}</h2>
+      <p class="chef-name"><strong>Chef:</strong> {{ recipe.chef?.name || 'Sin Chef' }}</p>
+      <p class="ingredients"><strong>Ingredientes:</strong></p>
+      <p>{{ recipe.ingredients }}</p>
+      <p class="description"><strong>Descripción:</strong></p>
+      <p>{{ recipe.descriptions }}</p>
+    </div>
+  </div>
+</ion-content>

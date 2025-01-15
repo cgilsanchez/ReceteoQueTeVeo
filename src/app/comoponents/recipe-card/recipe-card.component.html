@@ -1,4 +1,4 @@
-<ion-card class="recipe-card">
+<ion-card class="recipe-card" (click)="openRecipeDetail()">
   <div class="image-container">
     <ion-img *ngIf="recipe.image" [src]="recipe.image"></ion-img>
   </div>
@@ -11,13 +11,13 @@
     <p><strong>Descripción:</strong> {{ recipe.descriptions }}</p>
   </ion-card-content>
   <div class="buttons">
-    <ion-button color="primary" (click)="editRecipe()">
+    <ion-button color="primary" (click)="editRecipe($event)">
       <ion-icon name="create-outline"></ion-icon>
     </ion-button>
-    <ion-button color="danger" (click)="deleteRecipe()">
+    <ion-button color="danger" (click)="deleteRecipe($event)">
       <ion-icon name="trash-outline"></ion-icon>
     </ion-button>
-    <ion-button fill="clear" (click)="toggleFavorite()">
+    <ion-button fill="clear" (click)="toggleFavorite($event)">
       <ion-icon [name]="isFavorite(recipe.id) ? 'heart' : 'heart-outline'" class="favorite-icon"></ion-icon>
     </ion-button>
   </div>
