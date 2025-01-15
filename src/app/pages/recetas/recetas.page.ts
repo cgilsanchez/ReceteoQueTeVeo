@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { RecipesService } from '../../service/recipes.service';
 import { ModalComponent } from '../../comoponents/modal/modal.component';
+import { FavoritesService } from 'src/app/service/favorites.service';
 
 @Component({
   selector: 'app-recetas',
@@ -13,32 +14,37 @@ export class RecetasPage {
 
   constructor(
     private recipesService: RecipesService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController, // Usar modalCtrl como nombre coherente
+    private favoritesService: FavoritesService
   ) {}
 
-  ionViewWillEnter() {
+  // Cargar las recetas al entrar a la página
+  ionViewWillEnter(): void {
     this.loadRecipes();
   }
 
   // Cargar todas las recetas
-  loadRecipes() {
+  loadRecipes(): void {
     this.recipesService.getRecipes().subscribe({
       next: (res) => {
         this.recipes = res.data
-        .map((item: any) => ({
-          id: item.id,
-          ...item.attributes,
-          chef: item.attributes.chef?.data
-            ? {
-                id: item.attributes.chef.data.id,
-                name: item.attributes.chef.data.attributes.name,
-              }
-            : null,
-          image: item.attributes.image?.data
-            ? item.attributes.image.data.attributes.url
-            : null,
-        }))
-        .filter((recipe: any) => recipe.name && recipe.ingredients && recipe.descriptions);
+          .map((item: any) => ({
+            id: item.id,
+            ...item.attributes,
+            chef: item.attributes.chef?.data
+              ? {
+                  id: item.attributes.chef.data.id,
+                  name: item.attributes.chef.data.attributes.name,
+                }
+              : null,
+            image: item.attributes.image?.data
+              ? item.attributes.image.data.attributes.url
+              : null,
+          }))
+          .filter(
+            (recipe: any) =>
+              recipe.name && recipe.ingredients && recipe.descriptions
+          );
       },
       error: (err) => console.error('Error al cargar recetas:', err),
     });
@@ -46,59 +52,56 @@ export class RecetasPage {
   
 
   // Abrir el modal para crear o editar recetas
-  async openModal(recipe: any = null) {
+  async openModal(recipe: any = null): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: ModalComponent,
-      componentProps: {
-        recipe: recipe
-          ? { ...recipe }
-          : { name: '', ingredients: '', descriptions: '', chef: null, image: null },
-      },
+      componentProps: { recipe: { ...recipe } }, // Pasar la receta actual
     });
-
+  
     modal.onDidDismiss().then((result) => {
-      if (result.data) {
-        this.saveRecipe(result.data); // Guardar la receta
+      if (result.role === 'saved' && result.data) {
+        const updatedRecipe = result.data;
+    
+        // Encuentra la receta en la lista y actualiza sus datos
+        const index = this.recipes.findIndex((r) => r.id === updatedRecipe.id);
+        if (index !== -1) {
+          this.recipes[index] = updatedRecipe; // Actualiza la receta existente
+        } else {
+          // Si es una nueva receta, añádela a la lista
+          this.recipes.push(updatedRecipe);
+        }
       }
     });
-
-    return await modal.present();
+    
+    
+    await modal.present();
   }
+  
+  
 
-  // Guardar o actualizar receta con imagen
-  saveRecipe(recipe: any) {
-    const formData = new FormData();
-    formData.append(
-      'data',
-      JSON.stringify({
-        name: recipe.name,
-        ingredients: recipe.ingredients,
-        descriptions: recipe.descriptions,
-        chef: recipe.chef,
-      })
-    );
-
-    if (recipe.image) {
-      formData.append('files.image', recipe.image); // Agregar imagen al formulario
-    }
-
-    this.recipesService.saveRecipeWithImage(formData).subscribe({
-      next: () => {
-        console.log('Receta guardada con éxito');
-        this.loadRecipes(); // Recargar la lista de recetas
-      },
-      error: (err) => console.error('Error al guardar receta:', err),
-    });
-  }
 
   // Eliminar una receta
-  deleteRecipe(id: number) {
+  deleteRecipe(id: number): void {
     this.recipesService.deleteRecipe(id).subscribe({
       next: () => {
         console.log('Receta eliminada con éxito');
-        this.loadRecipes();
+        this.recipes = this.recipes.filter((recipe) => recipe.id !== id); // Eliminar de la lista sin recargar
       },
       error: (err) => console.error('Error al eliminar receta:', err),
     });
+  }
+
+  // Verificar si una receta es favorita
+  isFavorite(recipeId: number): boolean {
+    return this.favoritesService.isFavorite(recipeId);
+  }
+
+  // Alternar el estado de favorito de una receta
+  toggleFavorite(recipeId: number): void {
+    if (this.isFavorite(recipeId)) {
+      this.favoritesService.removeFavorite(recipeId);
+    } else {
+      this.favoritesService.addFavorite(recipeId);
+    }
   }
 }

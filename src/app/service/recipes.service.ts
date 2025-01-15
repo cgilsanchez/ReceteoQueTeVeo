@@ -18,17 +18,21 @@ export class RecipesService {
   // Guardar o actualizar una receta
   saveRecipeWithImage(formData: FormData, id?: number): Observable<any> {
     if (id) {
-      // Si hay un ID, realiza una actualización
-      return this.http.put(`${this.apiUrl}/${id}`, formData);
+      return this.http.put<any>(`${this.apiUrl}/${id}?populate=chef,image`, formData);
     } else {
-      // Si no hay ID, realiza una creación
-      return this.http.post(this.apiUrl, formData);
+      return this.http.post<any>(`${this.apiUrl}?populate=chef,image`, formData);
     }
   }
   
-
+  updateRecipe(id: number, formData: FormData): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}?populate=chef,image`, formData);
+  }
+  
+  
   // Eliminar una receta
   deleteRecipe(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
+
 }

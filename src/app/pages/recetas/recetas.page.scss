@@ -1,25 +1,26 @@
+/* CSS para el contenedor de las tarjetas (recetas.page.scss) */
 .recipe-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* Cuatro columnas */
     gap: 16px;
     padding: 16px;
-}
-
-/* Responsivo */
-@media (max-width: 1024px) {
+  }
+  
+  /* Responsivo */
+  @media (max-width: 1024px) {
     .recipe-grid {
-        grid-template-columns: repeat(3, 1fr); /* Tres columnas en tablets */
+      grid-template-columns: repeat(3, 1fr); /* Tres columnas en tablets */
     }
-}
-
-@media (max-width: 768px) {
+  }
+  
+  @media (max-width: 768px) {
     .recipe-grid {
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas en móviles */
+      grid-template-columns: repeat(2, 1fr); /* Dos columnas en móviles */
     }
-}
-
-@media (max-width: 480px) {
+  }
+  
+  @media (max-width: 480px) {
     .recipe-grid {
-        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+      grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
     }
-}
+  }

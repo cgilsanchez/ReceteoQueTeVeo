@@ -13,7 +13,7 @@ import { RecipeCardModule } from '../../comoponents/recipe-card/recipe-card.modu
     FormsModule,
     IonicModule,
     RecetasPageRoutingModule,
-    RecipeCardModule, // Importa el módulo aquí
+    RecipeCardModule, 
   ],
   declarations: [RecetasPage], // Declara la página de recetas
 })

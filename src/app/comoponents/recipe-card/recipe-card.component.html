@@ -1,8 +1,7 @@
 <ion-card class="recipe-card">
   <div class="image-container">
-    <ion-img *ngIf="recipe.image" [src]="recipe.image" alt="Imagen de la receta"></ion-img>
+    <ion-img *ngIf="recipe.image" [src]="recipe.image"></ion-img>
   </div>
-  
   <ion-card-header>
     <ion-card-title>{{ recipe.name }}</ion-card-title>
     <ion-card-subtitle>Chef: {{ recipe.chef?.name || 'Sin Chef' }}</ion-card-subtitle>
@@ -12,7 +11,14 @@
     <p><strong>Descripción:</strong> {{ recipe.descriptions }}</p>
   </ion-card-content>
   <div class="buttons">
-    <ion-button color="primary" (click)="editRecipe()">Editar</ion-button>
-    <ion-button color="danger" (click)="deleteRecipe()">Eliminar</ion-button>
+    <ion-button color="primary" (click)="editRecipe()">
+      <ion-icon name="create-outline"></ion-icon>
+    </ion-button>
+    <ion-button color="danger" (click)="deleteRecipe()">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+    <ion-button color="warning" (click)="toggleFavorite()">
+      <ion-icon name="heart-outline"></ion-icon>
+    </ion-button>
   </div>
 </ion-card>

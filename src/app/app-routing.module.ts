@@ -32,6 +32,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'favorites',
+    loadChildren: () => import('./pages/favorites/favorites.module').then( m => m.FavoritesPageModule)
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
@@ -40,6 +44,8 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'login',
   },
+ 
+
 ];
 
 @NgModule({

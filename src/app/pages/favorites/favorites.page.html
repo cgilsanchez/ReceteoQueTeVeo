@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Favoritos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="favorites.length === 0" class="no-favorites">
+    <h2>No tienes recetas favoritas.</h2>
+  </div>
+
+  <div class="recipe-grid" *ngIf="favorites.length > 0">
+    <app-recipe-card
+      *ngFor="let recipe of favorites"
+      [recipe]="recipe"
+      (delete)="removeFavorite(recipe.id)"
+    ></app-recipe-card>
+  </div>
+</ion-content>

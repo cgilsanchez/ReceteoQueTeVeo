@@ -10,16 +10,16 @@ import { RecipesService } from '../../service/recipes.service';
 })
 export class ModalComponent implements OnInit {
   @Input() recipe: any = {
-    id: null, // Asegúrate de incluir el ID
+    id: null,
     name: '',
     ingredients: '',
     descriptions: '',
     chef: null,
-    image: null, // Asegúrate de que este campo se pase correctamente
+    image: null,
   };
 
   chefs: Chef[] = [];
-  selectedFile: File | null = null; // Archivo seleccionado
+  selectedFile: File | null = null;
 
   constructor(
     private modalController: ModalController,
@@ -34,6 +34,11 @@ export class ModalComponent implements OnInit {
         ...item.attributes,
       }));
     });
+
+    // Si el chef es un objeto, asigna solo su ID
+    if (this.recipe.chef && typeof this.recipe.chef === 'object') {
+      this.recipe.chef = this.recipe.chef.id;
+    }
   }
 
   close() {
@@ -49,7 +54,7 @@ export class ModalComponent implements OnInit {
   }
 
   saveRecipe() {
-    if (this.recipe.name && this.recipe.ingredients && this.recipe.descriptions && this.recipe.chef) {
+    if (this.recipe.name && this.recipe.ingredients && this.recipe.descriptions) {
       const formData = new FormData();
       formData.append(
         'data',
@@ -57,19 +62,38 @@ export class ModalComponent implements OnInit {
           name: this.recipe.name,
           ingredients: this.recipe.ingredients,
           descriptions: this.recipe.descriptions,
-          chef: this.recipe.chef,
+          chef: this.recipe.chef, // Conservar el chef actual si no se cambia
         })
       );
   
+      // Adjuntar imagen solo si se seleccionó una nueva
       if (this.selectedFile) {
-        formData.append('files.image', this.selectedFile); // Adjuntar imagen
+        formData.append('files.image', this.selectedFile);
       }
   
-      // Llamar al servicio con el ID si es una edición
-      this.recipesService.saveRecipeWithImage(formData, this.recipe.id).subscribe({
+      const saveObservable = this.recipe.id
+        ? this.recipesService.updateRecipe(this.recipe.id, formData)
+        : this.recipesService.saveRecipeWithImage(formData);
+  
+      saveObservable.subscribe({
         next: (res) => {
-          console.log('Receta guardada:', res);
-          this.modalController.dismiss(true); // Cierra el modal y recarga las recetas
+          // Procesar los datos devueltos del backend
+          const updatedRecipe = {
+            id: res.data.id,
+            ...res.data.attributes,
+            chef: res.data.attributes.chef?.data
+              ? {
+                  id: res.data.attributes.chef.data.id,
+                  name: res.data.attributes.chef.data.attributes.name,
+                }
+              : null,
+            image: res.data.attributes.image?.data
+              ? res.data.attributes.image.data.attributes.url
+              : null,
+          };
+  
+          // Cerrar el modal y devolver la receta actualizada
+          this.modalController.dismiss(updatedRecipe, 'saved');
         },
         error: (err) => {
           console.error('Error al guardar la receta:', err);
@@ -79,4 +103,7 @@ export class ModalComponent implements OnInit {
       alert('Por favor, completa todos los campos antes de guardar.');
     }
   }
-}  
+  
+  
+  
+}
