@@ -1,42 +1,42 @@
-/* CSS para el contenedor de las tarjetas (recetas.page.scss) */
-.recipe-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Cuatro columnas */
-    gap: 16px;
-    padding: 16px;
-  }
+    /* CSS para el contenedor de las tarjetas (recetas.page.scss) */
+    .recipe-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* Cuatro columnas */
+        gap: 16px;
+        padding: 16px;
+    }
 
-  ion-content {
-    --background:  #fab027; /* Fondo naranja clarito */
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-  }
-  
-  .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem;
-    width: 100%;
-    max-width: 1200px;
-  }
-  
-  
-  /* Responsivo */
-  @media (max-width: 1024px) {
-    .recipe-grid {
-      grid-template-columns: repeat(3, 1fr); /* Tres columnas en tablets */
+    ion-content {
+        --background:  #fab027; /* Fondo naranja clarito */
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
     }
-  }
-  
-  @media (max-width: 768px) {
-    .recipe-grid {
-      grid-template-columns: repeat(2, 1fr); /* Dos columnas en móviles */
+    
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+        width: 100%;
+        max-width: 1200px;
     }
-  }
-  
-  @media (max-width: 480px) {
-    .recipe-grid {
-      grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    
+    
+    /* Responsivo */
+    @media (max-width: 1024px) {
+        .recipe-grid {
+        grid-template-columns: repeat(3, 1fr); /* Tres columnas en tablets */
+        }
     }
-  }
+    
+    @media (max-width: 768px) {
+        .recipe-grid {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas en móviles */
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .recipe-grid {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        }
+    }

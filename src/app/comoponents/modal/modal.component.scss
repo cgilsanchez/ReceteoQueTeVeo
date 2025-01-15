@@ -1,0 +1,89 @@
+    /* Encabezado del modal */
+    .modal-header {
+        background: linear-gradient(90deg, #d97706, #c2410c); /* Naranja cálido */
+        color: white;
+        font-size: 1.5rem;
+    }
+    
+    /* Contenido del modal */
+    .modal-content {
+        padding: 1rem;
+        background-color: #fff8e7; /* Beige suave */
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        margin: 1rem;
+    }
+    
+    /* Iconos de los campos */
+    .input-group {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+    
+    .input-icon {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        color: #d97706; /* Naranja suave */
+    }
+    
+    .custom-item {
+        --background: white;
+        border-radius: 10px;
+        padding-left: 2.5rem; /* Espacio para los iconos */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .custom-item ion-label {
+        font-weight: bold;
+        color: #444;
+    }
+    
+    /* Botón de subir imagen */
+    .file-upload {
+        text-align: center;
+        margin: 1rem 0;
+    
+        label {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.8rem 1.5rem;
+        background: linear-gradient(90deg, #f59e0b, #d97706);
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+        }
+    
+        label:hover {
+        transform: scale(1.05);
+        }
+    
+        ion-icon {
+        margin-right: 0.5rem;
+        font-size: 1.2rem;
+        }
+    
+        input {
+        display: none; /* Ocultar el campo real */
+        }
+    }
+    
+    /* Botón de guardar */
+    .save-button {
+        --background: linear-gradient(90deg, #d97706, #c2410c); /* Naranja cálido */
+        color: white;
+        font-weight: bold;
+        border-radius: 10px;
+        font-size: 1.2rem;
+        transition: transform 0.2s ease-in-out;
+    }
+    
+    .save-button:hover {
+        transform: scale(1.05);
+    }
+    

@@ -49,4 +49,5 @@ export class AppComponent {
     await this.authService.logout(); // Elimina el token de sesión
     this.router.navigate(['/login']); // Redirige al login
   }
+  
 }

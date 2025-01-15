@@ -1,41 +1,69 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary" class="modal-header">
     <ion-title>{{ recipe.id ? 'Editar Receta' : 'Nueva Receta' }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="close()">Cerrar</ion-button>
+      <ion-button (click)="close()" color="light">
+        <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label position="floating">Nombre</ion-label>
-    <ion-input [(ngModel)]="recipe.name"></ion-input>
-  </ion-item>
+  <div class="modal-content">
+    <!-- Campo de nombre -->
+    <div class="input-group">
+      <ion-icon name="create-outline" class="input-icon"></ion-icon>
+      <ion-item class="custom-item">
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="recipe.name"></ion-input>
+      </ion-item>
+    </div>
 
-  <ion-item>
-    <ion-label position="floating">Ingredientes</ion-label>
-    <ion-input [(ngModel)]="recipe.ingredients"></ion-input>
-  </ion-item>
+    <!-- Campo de ingredientes -->
+    <div class="input-group">
+      <ion-icon name="nutrition-outline" class="input-icon"></ion-icon>
+      <ion-item class="custom-item">
+        <ion-label position="floating">Ingredientes</ion-label>
+        <ion-textarea [(ngModel)]="recipe.ingredients"></ion-textarea>
+      </ion-item>
+    </div>
 
-  <ion-item>
-    <ion-label position="floating">Descripción</ion-label>
-    <ion-textarea [(ngModel)]="recipe.descriptions"></ion-textarea>
-  </ion-item>
+    <!-- Campo de descripción -->
+    <div class="input-group">
+      <ion-icon name="information-circle-outline" class="input-icon"></ion-icon>
+      <ion-item class="custom-item">
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea [(ngModel)]="recipe.descriptions"></ion-textarea>
+      </ion-item>
+    </div>
 
-  <ion-item>
-    <ion-label position="floating">Chef</ion-label>
-    <ion-select [(ngModel)]="recipe.chef" interface="popover">
-      <ion-select-option *ngFor="let chef of chefs" [value]="chef.id">
-        {{ chef.name }}
-      </ion-select-option>
-    </ion-select>
-  </ion-item>
-  
+    <!-- Campo de chef -->
+    <div class="input-group">
+      <ion-icon name="person-circle-outline" class="input-icon"></ion-icon>
+      <ion-item class="custom-item">
+        <ion-label position="floating">Chef</ion-label>
+        <ion-select [(ngModel)]="recipe.chef" interface="popover">
+          <ion-select-option *ngFor="let chef of chefs" [value]="chef.id">
+            {{ chef.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
 
-  <ion-item>
-    <input type="file" (change)="onFileSelected($event)" />
-  </ion-item>
+    <!-- Subir imagen -->
+    <div class="file-upload">
+      <label for="fileInput">
+        <ion-icon name="cloud-upload-outline"></ion-icon>
+        Subir Imagen
+      </label>
+      <input id="fileInput" type="file" (change)="onFileSelected($event)" />
+    </div>
 
-  <ion-button expand="block" (click)="saveRecipe()">Guardar</ion-button>
+    <!-- Botón de guardar -->
+    <ion-button expand="block" class="save-button" (click)="saveRecipe()" color="secondary">
+      <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+      Guardar Receta
+    </ion-button>
+  </div>
 </ion-content>
