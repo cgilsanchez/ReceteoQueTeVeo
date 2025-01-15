@@ -59,4 +59,15 @@
         }
       }
     }
+
+    .favorite-icon {
+        font-size: 24px;
+        color: gray;
+        transition: color 0.3s;
+      }
+      
+      .favorite-icon[name='heart'] {
+        color: red; /* Ícono rojo cuando es favorito */
+      }
+      
   }

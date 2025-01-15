@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FavoritesService } from '../../service/favorites.service'; // Servicio de favoritos
+import { FavoritesService } from '../../service/favorites.service';
 
 @Component({
   selector: 'app-recipe-card',

@@ -17,8 +17,8 @@
     <ion-button color="danger" (click)="deleteRecipe()">
       <ion-icon name="trash-outline"></ion-icon>
     </ion-button>
-    <ion-button color="warning" (click)="toggleFavorite()">
-      <ion-icon name="heart-outline"></ion-icon>
+    <ion-button fill="clear" (click)="toggleFavorite()">
+      <ion-icon [name]="isFavorite(recipe.id) ? 'heart' : 'heart-outline'" class="favorite-icon"></ion-icon>
     </ion-button>
   </div>
 </ion-card>
