@@ -12,8 +12,9 @@ import { ChefModalComponent } from './comoponents/chef-modal/chef-modal.componen
 
 
 
+
 @NgModule({
-  declarations: [AppComponent,ChefModalComponent],
+  declarations: [AppComponent,ChefModalComponent ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

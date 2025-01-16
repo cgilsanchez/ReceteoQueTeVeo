@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class LoginPage {
   loginForm: FormGroup;
   errorMessage: string | null = null;
+  showPassword: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -21,6 +22,10 @@ export class LoginPage {
       identifier: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 
   async onSubmit(): Promise<void> {

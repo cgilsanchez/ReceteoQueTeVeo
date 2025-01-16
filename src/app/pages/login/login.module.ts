@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
+import { TogglePasswordPipe } from 'src/app/pipe/password.pipe';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { LoginPage } from './login.page';
     IonicModule,
     LoginPageRoutingModule
   ],
-  declarations: [LoginPage]
+  declarations: [LoginPage, TogglePasswordPipe]
 })
 export class LoginPageModule {}
 

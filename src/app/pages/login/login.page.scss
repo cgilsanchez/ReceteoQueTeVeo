@@ -78,3 +78,24 @@ a {
 ion-item {
   margin: 10px 0;
 }
+
+/* Contenedor del campo de contraseña */
+.password-item {
+  position: relative;
+}
+
+/* Ícono del ojo */
+.toggle-password-icon {
+  font-size: 20px;
+  color: #888; /* Color gris */
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.toggle-password-icon:hover {
+  color: #ff9800; /* Cambiar a naranja al pasar el cursor */
+}
