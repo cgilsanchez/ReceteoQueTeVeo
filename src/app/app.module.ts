@@ -6,15 +6,13 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
-import { ModalModule } from './comoponents/modal/modal.module'; // Asegúrate de que la ruta sea correcta
+import { ModalModule } from './comoponents/modal/modal.module';
 import { FormsModule } from '@angular/forms';
 import { ChefModalComponent } from './comoponents/chef-modal/chef-modal.component';
-
-
-
+import { SplashComponent } from './comoponents/splash/splash.component';
 
 @NgModule({
-  declarations: [AppComponent,ChefModalComponent ],
+  declarations: [AppComponent, ChefModalComponent,], // Declara el componente
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -22,7 +20,7 @@ import { ChefModalComponent } from './comoponents/chef-modal/chef-modal.componen
     HttpClientModule,
     IonicStorageModule.forRoot(),
     ModalModule,
-    FormsModule, // Agrega el módulo del modal
+    FormsModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

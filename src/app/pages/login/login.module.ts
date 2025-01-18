@@ -6,16 +6,16 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 import { TogglePasswordPipe } from 'src/app/pipe/password.pipe';
+import { SplashComponent } from '../../comoponents/splash/splash.component'; // Importa el SplashComponent
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     IonicModule,
-    LoginPageRoutingModule
+    LoginPageRoutingModule,
   ],
-  declarations: [LoginPage, TogglePasswordPipe]
+  declarations: [LoginPage, TogglePasswordPipe, SplashComponent], // Declara el SplashComponent aquí
 })
 export class LoginPageModule {}
-

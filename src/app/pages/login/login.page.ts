@@ -12,6 +12,7 @@ export class LoginPage {
   loginForm: FormGroup;
   errorMessage: string | null = null;
   showPassword: boolean = false;
+  showSplash: boolean = false; // Controla la visibilidad del Splash (inicialmente oculto)
 
   constructor(
     private fb: FormBuilder,
@@ -41,7 +42,15 @@ export class LoginPage {
         console.log('Inicio de sesión exitoso:', response);
         await this.authService.setToken(response.jwt); // Guardar el token en Storage
         this.errorMessage = null; // Limpiar mensaje de error en caso de éxito
-        this.router.navigate(['/recetas']); // Redirigir al listado de recetas
+
+        // Mostrar el Splash
+        this.showSplash = true;
+
+        // Redirigir a Recetas después de 3 segundos
+        setTimeout(() => {
+          this.showSplash = false;
+          this.router.navigate(['/recetas']); // Redirigir al listado de recetas
+        }, 3000);
       },
       (error) => {
         console.error('Error al iniciar sesión:', error);
@@ -50,4 +59,3 @@ export class LoginPage {
     );
   }
 }
-
