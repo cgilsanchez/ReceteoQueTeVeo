@@ -1,7 +1,7 @@
 <div class="chef-card">
   <h2>{{ chef.name }}</h2>
   <div class="card-buttons">
-    <button (click)="onEdit()">Editar</button>
-    <button (click)="onDelete()">Borrar</button>
+    <button (click)="onEdit()">{{ translate('CHEFS.EDIT_CHEF') }}</button>
+    <button (click)="onDelete()">{{ translate('CHEFS.DELETE_CHEF') }}</button>
   </div>
 </div>

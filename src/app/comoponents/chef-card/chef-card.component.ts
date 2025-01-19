@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { TranslationService } from 'src/app/service/translation.service';
 
 @Component({
   selector: 'app-chef-card',
@@ -6,15 +7,21 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./chef-card.component.scss'],
 })
 export class ChefCardComponent {
-  @Input() chef: any; // Datos del chef que se mostrarán
-  @Output() edit = new EventEmitter<void>(); // Emite un evento para editar el chef
-  @Output() delete = new EventEmitter<void>(); // Emite un evento para eliminar el chef
+  @Input() chef: any; // Datos del chef
+  @Output() edit = new EventEmitter<void>(); // Evento para editar
+  @Output() delete = new EventEmitter<void>(); // Evento para borrar
+
+  constructor(private translationService: TranslationService) {}
+
+  translate(key: string): string {
+    return this.translationService.getTranslation(key);
+  }
 
   onEdit() {
-    this.edit.emit(); // Emite el evento de edición
+    this.edit.emit(); // Emite evento de edición
   }
 
   onDelete() {
-    this.delete.emit(); // Emite el evento de eliminación
+    this.delete.emit(); // Emite evento de eliminación
   }
 }

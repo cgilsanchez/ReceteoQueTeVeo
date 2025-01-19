@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { AuthService } from './service/auth.service';
+import { TranslationService } from './service/translation.service';
 
 @Component({
   selector: 'app-root',
@@ -10,44 +11,51 @@ import { AuthService } from './service/auth.service';
 })
 export class AppComponent {
   showMenu: boolean = false;
+  currentLanguage: string = 'es';
 
   constructor(
     private router: Router,
     private menuCtrl: MenuController,
-    private authService: AuthService
+    private authService: AuthService,
+    private translationService: TranslationService
   ) {
     this.router.events.subscribe(async (event) => {
       if (event instanceof NavigationEnd) {
         const isAuthenticated = await this.authService.isAuthenticated();
-        this.showMenu = isAuthenticated; // Mostrar el menú solo si está autenticado
+        this.showMenu = isAuthenticated;
       }
     });
+
+    this.currentLanguage = this.translationService.getCurrentLanguage() || 'es';
+    this.translationService.setLanguage(this.currentLanguage);
   }
 
   async ngOnInit(): Promise<void> {
-    await this.checkAuthentication(); // Verificar autenticación al iniciar la aplicación
+    await this.checkAuthentication();
   }
 
   async checkAuthentication(): Promise<void> {
-    // Inicializa el almacenamiento y verifica la autenticación
     await this.authService.init();
     const isAuthenticated = await this.authService.isAuthenticated();
-    console.log('¿Está autenticado?:', isAuthenticated);
 
     if (isAuthenticated) {
-      this.router.navigate(['/recetas']); // Redirige al usuario autenticado
+      this.router.navigate(['/recetas']);
     } else {
-      this.router.navigate(['/login']); // Si no está autenticado, redirige al login
+      this.router.navigate(['/login']);
     }
   }
 
+  changeLanguage(lang: string): void {
+    this.translationService.setLanguage(lang);
+    this.currentLanguage = lang;
+  }
+
   closeMenu(): void {
-    this.menuCtrl.close(); // Cierra el menú automáticamente
+    this.menuCtrl.close();
   }
 
   async logout(): Promise<void> {
-    await this.authService.logout(); // Elimina el token de sesión
-    this.router.navigate(['/login']); // Redirige al login
+    await this.authService.logout();
+    this.router.navigate(['/login']);
   }
-  
 }
