@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content style="--overflow: auto; scrollbar-width: none; -ms-overflow-style: none;">
   <div class="modal-content">
     <!-- Campo de nombre -->
     <div class="input-group">
@@ -25,7 +25,7 @@
       <ion-icon name="nutrition-outline" class="input-icon"></ion-icon>
       <ion-item class="custom-item">
         <ion-label position="floating">Ingredientes</ion-label>
-        <ion-textarea [(ngModel)]="recipe.ingredients"></ion-textarea>
+        <ion-textarea [(ngModel)]="recipe.ingredients" autoGrow></ion-textarea>
       </ion-item>
     </div>
 
@@ -34,7 +34,7 @@
       <ion-icon name="information-circle-outline" class="input-icon"></ion-icon>
       <ion-item class="custom-item">
         <ion-label position="floating">Descripción</ion-label>
-        <ion-textarea [(ngModel)]="recipe.descriptions"></ion-textarea>
+        <ion-textarea [(ngModel)]="recipe.descriptions" autoGrow></ion-textarea>
       </ion-item>
     </div>
 
@@ -67,3 +67,5 @@
     </ion-button>
   </div>
 </ion-content>
+
+
