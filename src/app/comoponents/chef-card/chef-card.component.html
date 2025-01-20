@@ -1,7 +1,12 @@
 <div class="chef-card">
+  <ion-icon class="chef-icon" name="person-circle-outline"></ion-icon>
   <h2>{{ chef.name }}</h2>
   <div class="card-buttons">
-    <button (click)="onEdit()">{{ translate('CHEFS.EDIT_CHEF') }}</button>
-    <button (click)="onDelete()">{{ translate('CHEFS.DELETE_CHEF') }}</button>
+    <button class="edit-btn" (click)="onEdit()">
+      <ion-icon name="create-outline"></ion-icon>
+    </button>
+    <button class="delete-btn" (click)="onDelete()">
+      <ion-icon name="trash-outline"></ion-icon>
+    </button>
   </div>
 </div>

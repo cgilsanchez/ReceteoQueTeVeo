@@ -1,21 +1,27 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="warning">
     <ion-title>{{ chef?.id ? 'Editar Chef' : 'Crear Chef' }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="close()">Cerrar</ion-button>
+      <ion-button (click)="close()" color="light">
+        <ion-icon name="close-outline"></ion-icon>
+        Cerrar
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="saveChef()">
-    <ion-item>
+  <form (ngSubmit)="saveChef()" class="modal-form">
+    <ion-item lines="none">
       <ion-label position="floating">Nombre del Chef</ion-label>
       <ion-input [(ngModel)]="chef.name" name="name" required></ion-input>
     </ion-item>
 
     <div class="button-container">
-      <ion-button expand="full" color="primary" type="submit">Guardar</ion-button>
+      <ion-button expand="block" color="warning" type="submit">
+        <ion-icon slot="start" name="checkmark-outline"></ion-icon>
+        Guardar
+      </ion-button>
     </div>
   </form>
 </ion-content>

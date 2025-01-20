@@ -1,62 +1,65 @@
-.chef-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px; /* Espacio entre las tarjetas */
-    padding: 20px;
-    justify-content: center; /* Centrar tarjetas */
-  }
-  
-  /* Estilo de las tarjetas */
-  .chef-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-  
-    &:hover {
-      transform: scale(1.05); /* Efecto de zoom */
-      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-    }
-  
-    h2 {
-      font-size: 1.2rem;
-      color: #333333;
-      margin-bottom: 10px;
-    }
-  
-    .card-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-  
-      button {
-        padding: 8px 12px;
-        border: none;
-        border-radius: 5px;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: background-color 0.2s;
-  
-        &:first-child {
-          background-color: #ffc107; /* Amarillo */
-          color: #ffffff;
-        }
-  
-        &:last-child {
-          background-color: #dc3545; /* Rojo */
-          color: #ffffff;
-        }
-  
-        &:hover:first-child {
-          background-color: #e0a800; /* Más oscuro */
-        }
-  
-        &:hover:last-child {
-          background-color: #c82333; /* Más oscuro */
-        }
-      }
-    }
-  }
-  
+.chef-card {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.chef-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.chef-icon {
+  font-size: 50px;
+  color: #ff9800;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: #333333;
+  margin-bottom: 15px;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+button.edit-btn {
+  background-color: #ffc107;
+  color: #ffffff;
+}
+
+button.edit-btn:hover {
+  background-color: #e0a800;
+}
+
+button.delete-btn {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+
+button.delete-btn:hover {
+  background-color: #c82333;
+}

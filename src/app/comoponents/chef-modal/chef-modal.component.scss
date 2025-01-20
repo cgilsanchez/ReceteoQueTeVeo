@@ -1,66 +1,32 @@
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 16px;
-    }
-    
-    .add-button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-bottom: 16px;
-    
-        &:hover {
-        background-color: #0056b3;
-        }
-    }
-    
-    .chef-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 16px;
-    }
-    
-    .chef-card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 16px;
-        background-color: #fff;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    
-        h2 {
-        margin: 0;
-        font-size: 20px;
-        color: #333;
-        }
-    
-        .buttons {
-        display: flex;
-        gap: 8px;
-    
-        button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-    
-            &:hover {
-            background-color: #0056b3;
-            }
-    
-            &:nth-child(2) {
-            background-color: #dc3545;
-    
-            &:hover {
-                background-color: #a71d2a;
-            }
-            }
-        }
-        }
-    }
-    
+ion-header {
+    --background: #ffa500; /* Fondo de cabecera */
+    --color: white; /* Texto en blanco */
+  }
+  
+  .modal-form {
+    padding: 16px;
+  }
+  
+  ion-item {
+    --background: #fff4e6; /* Fondo suave para el input */
+    --border-color: #ffa500;
+    --color-focused: #e69500; /* Naranja intenso */
+  }
+  
+  .button-container {
+    margin-top: 20px;
+  }
+  
+  ion-button {
+    --background: #ffcc00; /* Amarillo para combinar con la paleta */
+    --background-hover: #e6b800; /* Hover más oscuro */
+    --color: white;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+  
+  ion-button ion-icon {
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  
