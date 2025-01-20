@@ -1,25 +1,29 @@
+ion-content {
+  --background: #fab027; /* Cambia el fondo del contenido */
+}
+
 .no-favorites {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 18px;
-    color: #666;
-  }
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  color: #666;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+@media (max-width: 768px) {
   .recipe-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    padding: 16px;
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  @media (max-width: 768px) {
-    .recipe-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+}
+
+@media (max-width: 480px) {
+  .recipe-grid {
+    grid-template-columns: 1fr;
   }
-  
-  @media (max-width: 480px) {
-    .recipe-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-  
+}

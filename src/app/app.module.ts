@@ -13,6 +13,7 @@ import { SplashComponent } from './comoponents/splash/splash.component'; // Comp
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 // Función para cargar los archivos de traducción
 export function HttpLoaderFactory(http: HttpClient) {
@@ -32,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule, // Cliente HTTP para llamadas API
     IonicStorageModule.forRoot(), // Módulo de almacenamiento
     FormsModule, // Módulo de formularios
+    GoogleMapsModule,
     ReactiveFormsModule, // Módulo de formularios reactivos
     ModalModule, // Si tienes un módulo para modales adicionales
     TranslateModule.forRoot({
