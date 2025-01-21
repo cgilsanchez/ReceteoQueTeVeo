@@ -12,7 +12,7 @@ export class FavoritesPage implements OnInit {
 
   constructor(
     private favoritesService: FavoritesService,
-    private translationService: TranslationService
+    public translationService: TranslationService
   ) {}
 
   ngOnInit() {

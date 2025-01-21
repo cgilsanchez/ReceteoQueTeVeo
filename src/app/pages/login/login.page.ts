@@ -19,7 +19,7 @@ export class LoginPage {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private translationService: TranslationService
+    public translationService: TranslationService
   ) {
     this.loginForm = this.fb.group({
       identifier: ['', [Validators.required, Validators.email]],

@@ -17,7 +17,7 @@ export class RegisterPage {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private translationService: TranslationService
+    public translationService: TranslationService
   ) {
     this.registerForm = this.fb.group(
       {

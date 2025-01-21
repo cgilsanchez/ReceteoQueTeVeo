@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ChefService, Chef } from '../../service/chefs.service';
 import { RecipesService } from '../../service/recipes.service';
+import { TranslationService } from '../../service/translation.service';
 
 @Component({
   selector: 'app-modal',
@@ -24,7 +25,8 @@ export class ModalComponent implements OnInit {
   constructor(
     private modalController: ModalController,
     private chefService: ChefService,
-    private recipesService: RecipesService
+    private recipesService: RecipesService,
+    public translationService: TranslationService
   ) {}
 
   ngOnInit() {
@@ -35,7 +37,6 @@ export class ModalComponent implements OnInit {
       }));
     });
 
-    // Si el chef es un objeto, asigna solo su ID
     if (this.recipe.chef && typeof this.recipe.chef === 'object') {
       this.recipe.chef = this.recipe.chef.id;
     }
@@ -45,7 +46,6 @@ export class ModalComponent implements OnInit {
     this.modalController.dismiss();
   }
 
-  // Manejar la selección de archivo
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input?.files?.length) {
@@ -62,22 +62,20 @@ export class ModalComponent implements OnInit {
           name: this.recipe.name,
           ingredients: this.recipe.ingredients,
           descriptions: this.recipe.descriptions,
-          chef: this.recipe.chef, // Conservar el chef actual si no se cambia
+          chef: this.recipe.chef,
         })
       );
-  
-      // Adjuntar imagen solo si se seleccionó una nueva
+
       if (this.selectedFile) {
         formData.append('files.image', this.selectedFile);
       }
-  
+
       const saveObservable = this.recipe.id
         ? this.recipesService.updateRecipe(this.recipe.id, formData)
         : this.recipesService.saveRecipeWithImage(formData);
-  
+
       saveObservable.subscribe({
         next: (res) => {
-          // Procesar los datos devueltos del backend
           const updatedRecipe = {
             id: res.data.id,
             ...res.data.attributes,
@@ -91,8 +89,7 @@ export class ModalComponent implements OnInit {
               ? res.data.attributes.image.data.attributes.url
               : null,
           };
-  
-          // Cerrar el modal y devolver la receta actualizada
+
           this.modalController.dismiss(updatedRecipe, 'saved');
         },
         error: (err) => {
@@ -100,10 +97,7 @@ export class ModalComponent implements OnInit {
         },
       });
     } else {
-      alert('Por favor, completa todos los campos antes de guardar.');
+      alert(this.translationService.getTranslation('MODAL.COMPLETE_FIELDS'));
     }
   }
-  
-  
-  
 }

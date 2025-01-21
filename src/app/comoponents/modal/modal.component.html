@@ -1,6 +1,8 @@
 <ion-header>
   <ion-toolbar color="primary" class="modal-header">
-    <ion-title>{{ recipe.id ? 'Editar Receta' : 'Nueva Receta' }}</ion-title>
+    <ion-title>
+      {{ translationService.getTranslation(recipe.id ? 'RECIPES.EDIT_RECIPE' : 'RECIPES.NEW_RECIPE') }}
+    </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="close()" color="light">
         <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
@@ -15,7 +17,9 @@
     <div class="input-group">
       <ion-icon name="create-outline" class="input-icon"></ion-icon>
       <ion-item class="custom-item">
-        <ion-label position="floating">Nombre</ion-label>
+        <ion-label position="floating">
+          {{ translationService.getTranslation('RECIPES.NAME') }}
+        </ion-label>
         <ion-input [(ngModel)]="recipe.name"></ion-input>
       </ion-item>
     </div>
@@ -24,7 +28,9 @@
     <div class="input-group">
       <ion-icon name="nutrition-outline" class="input-icon"></ion-icon>
       <ion-item class="custom-item">
-        <ion-label position="floating">Ingredientes</ion-label>
+        <ion-label position="floating">
+          {{ translationService.getTranslation('RECIPES.INGREDIENTS') }}
+        </ion-label>
         <ion-textarea [(ngModel)]="recipe.ingredients" autoGrow></ion-textarea>
       </ion-item>
     </div>
@@ -33,7 +39,9 @@
     <div class="input-group">
       <ion-icon name="information-circle-outline" class="input-icon"></ion-icon>
       <ion-item class="custom-item">
-        <ion-label position="floating">Descripción</ion-label>
+        <ion-label position="floating">
+          {{ translationService.getTranslation('RECIPES.DESCRIPTION') }}
+        </ion-label>
         <ion-textarea [(ngModel)]="recipe.descriptions" autoGrow></ion-textarea>
       </ion-item>
     </div>
@@ -42,7 +50,9 @@
     <div class="input-group">
       <ion-icon name="person-circle-outline" class="input-icon"></ion-icon>
       <ion-item class="custom-item">
-        <ion-label position="floating">Chef</ion-label>
+        <ion-label position="floating">
+          {{ translationService.getTranslation('RECIPES.CHEF') }}
+        </ion-label>
         <ion-select [(ngModel)]="recipe.chef" interface="popover">
           <ion-select-option *ngFor="let chef of chefs" [value]="chef.id">
             {{ chef.name }}
@@ -55,7 +65,7 @@
     <div class="file-upload">
       <label for="fileInput">
         <ion-icon name="cloud-upload-outline"></ion-icon>
-        Subir Imagen
+        {{ translationService.getTranslation('RECIPES.UPLOAD_IMAGE') }}
       </label>
       <input id="fileInput" type="file" (change)="onFileSelected($event)" />
     </div>
@@ -63,9 +73,7 @@
     <!-- Botón de guardar -->
     <ion-button expand="block" class="save-button" (click)="saveRecipe()" color="secondary">
       <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
-      Guardar Receta
+      {{ translationService.getTranslation('RECIPES.SAVE_BUTTON') }}
     </ion-button>
   </div>
 </ion-content>
-
-

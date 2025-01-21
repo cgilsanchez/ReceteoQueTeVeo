@@ -1,6 +1,8 @@
 <ion-header>
   <ion-toolbar color="warning">
-    <ion-title class="recipe-title">{{ recipe.name }}</ion-title>
+    <ion-title class="recipe-title">
+      {{ translationService.getTranslation('RECIPES.TITLE') }}
+    </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="close()">
         <ion-icon name="close-outline" color="dark"></ion-icon>
@@ -16,10 +18,17 @@
     </div>
     <div class="recipe-info">
       <h2>{{ recipe.name }}</h2>
-      <p class="chef-name"><strong>Chef:</strong> {{ recipe.chef?.name || 'Sin Chef' }}</p>
-      <p class="ingredients"><strong>Ingredientes:</strong></p>
+      <p class="chef-name">
+        <strong>{{ translationService.getTranslation('RECIPES.CHEF') }}:</strong>
+        {{ recipe.chef?.name || translationService.getTranslation('RECIPES.NO_CHEF') }}
+      </p>
+      <p class="ingredients">
+        <strong>{{ translationService.getTranslation('RECIPES.INGREDIENTS') }}:</strong>
+      </p>
       <p>{{ recipe.ingredients }}</p>
-      <p class="description"><strong>Descripción:</strong></p>
+      <p class="description">
+        <strong>{{ translationService.getTranslation('RECIPES.DESCRIPTION') }}:</strong>
+      </p>
       <p>{{ recipe.descriptions }}</p>
     </div>
   </div>

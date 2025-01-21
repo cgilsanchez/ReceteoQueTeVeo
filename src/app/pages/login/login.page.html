@@ -6,14 +6,20 @@
       <div class="auth-logo">
         <img src="assets/recipe-logo.webp" alt="Receteo Logo" />
       </div>
-      <h1 class="auth-title">Iniciar Sesión</h1>
+      <h1 class="auth-title">
+        {{ translationService.getTranslation('LOGIN.TITLE') }}
+      </h1>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <ion-item>
-          <ion-label position="floating">Correo Electrónico</ion-label>
+          <ion-label position="floating">
+            {{ translationService.getTranslation('LOGIN.EMAIL') }}
+          </ion-label>
           <ion-input type="email" formControlName="identifier"></ion-input>
         </ion-item>
         <ion-item class="password-item">
-          <ion-label position="floating">Contraseña</ion-label>
+          <ion-label position="floating">
+            {{ translationService.getTranslation('LOGIN.PASSWORD') }}
+          </ion-label>
           <ion-input
             [type]="showPassword ? 'text' : 'password'"
             formControlName="password"
@@ -25,9 +31,13 @@
             (click)="togglePasswordVisibility()"
           ></ion-icon>
         </ion-item>
-        <button type="submit">Iniciar Sesión</button>
+        <button type="submit">
+          {{ translationService.getTranslation('LOGIN.LOGIN_BUTTON') }}
+        </button>
       </form>
-      <a routerLink="/register">¿No tienes cuenta? Regístrate</a>
+      <a routerLink="/register">
+        {{ translationService.getTranslation('LOGIN.REGISTER_LINK') }}
+      </a>
     </div>
   </div>
 </ion-content>

@@ -1,12 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Favoritos</ion-title>
+    <ion-title>
+      {{ translationService.getTranslation('FAVORITES.TITLE') }}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div *ngIf="favorites.length === 0" class="no-favorites">
-    <h2>No tienes recetas favoritas.</h2>
+    <h2>
+      {{ translationService.getTranslation('FAVORITES.NO_FAVORITES') }}
+    </h2>
   </div>
 
   <div class="recipe-grid" *ngIf="favorites.length > 0">
