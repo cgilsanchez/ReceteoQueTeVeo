@@ -26,7 +26,6 @@ export class ChefModalComponent {
     if (this.chef.id) {
       // Actualizar chef existente
       this.http.put(`${this.apiUrl}/${this.chef.id}`, { data: { name: this.chef.name } }).subscribe(() => {
-        alert(this.translationService.getTranslation('CHEFS.EDIT_CHEF'));
         this.modalCtrl.dismiss(true); // Devuelve un indicador de éxito
       });
     } else {
