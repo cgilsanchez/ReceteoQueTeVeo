@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FavoritesService } from '../../service/favorites.service';
+import { TranslationService } from '../../service/translation.service';
 
 @Component({
   selector: 'app-favorites',
@@ -9,14 +10,17 @@ import { FavoritesService } from '../../service/favorites.service';
 export class FavoritesPage implements OnInit {
   favorites: any[] = [];
 
-  constructor(private favoritesService: FavoritesService) {}
+  constructor(
+    private favoritesService: FavoritesService,
+    private translationService: TranslationService
+  ) {}
 
   ngOnInit() {
     this.loadFavorites();
   }
 
   ionViewWillEnter() {
-    this.loadFavorites(); // Recargar al entrar a la página
+    this.loadFavorites();
   }
 
   loadFavorites() {
@@ -24,7 +28,9 @@ export class FavoritesPage implements OnInit {
   }
 
   removeFavorite(recipeId: number) {
-    this.favoritesService.removeFavorite(recipeId);
-    this.loadFavorites();
+    if (confirm(this.translationService.getTranslation('FAVORITES.CONFIRM_DELETE'))) {
+      this.favoritesService.removeFavorite(recipeId);
+      this.loadFavorites();
+    }
   }
 }
