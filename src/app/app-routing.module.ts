@@ -17,29 +17,29 @@ const routes: Routes = [
     path: 'recetas',
     loadChildren: () =>
       import('./pages/recetas/recetas.module').then((m) => m.RecetasPageModule),
-    canActivate: [AuthGuard], // Protegido por el guard
+    canActivate: [AuthGuard], 
   },
   {
     path: 'chefs',
     loadChildren: () =>
       import('./pages/chef/chef.module').then((m) => m.ChefPageModule),
-    canActivate: [AuthGuard], // Protegido por el guard
+    canActivate: [AuthGuard], 
   },
   {
     path: 'usuarios',
     loadChildren: () =>
       import('./pages/usuario/usuario.module').then((m) => m.UsuarioPageModule),
-    canActivate: [AuthGuard], // Protegido por el guard
+    canActivate: [AuthGuard], 
   },
   {
     path: 'favorites',
     loadChildren: () =>
       import('./pages/favorites/favorites.module').then((m) => m.FavoritesPageModule),
-    canActivate: [AuthGuard], // Protegido por el guard
+    canActivate: [AuthGuard], 
   },
   {
     path: '',
-    redirectTo: 'recetas',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {

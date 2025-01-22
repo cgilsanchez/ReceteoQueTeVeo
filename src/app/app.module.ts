@@ -7,9 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicStorageModule } from '@ionic/storage-angular';
-import { ModalModule } from './comoponents/modal/modal.module'; // Si tienes un módulo para modales
-import { ChefModalComponent } from './comoponents/chef-modal/chef-modal.component'; // Componente del modal
-import { SplashComponent } from './comoponents/splash/splash.component'; // Componente del splash
+import { ModalModule } from './comoponents/modal/modal.module'; 
+import { ChefModalComponent } from './comoponents/chef-modal/chef-modal.component'; 
+import { SplashComponent } from './comoponents/splash/splash.component'; 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
