@@ -23,7 +23,7 @@ export class UsuarioPage implements OnInit {
     this.cargarUsuario();
   }
 
-  // Cargar datos del usuario autenticado
+  
   cargarUsuario() {
     this.usuarioService.obtenerUsuarioAutenticado().subscribe(
       (data) => {
@@ -35,7 +35,7 @@ export class UsuarioPage implements OnInit {
     );
   }
 
-  // Abrir modal para editar un campo del usuario
+  
   async editarCampo(campo: string) {
     const alert = await this.alertController.create({
       header: `Editar ${campo}`,
@@ -65,7 +65,7 @@ export class UsuarioPage implements OnInit {
     await alert.present();
   }
 
-  // Actualizar datos del usuario
+ 
   actualizarUsuario() {
     this.usuarioService.actualizarUsuario(this.usuario.id, this.usuario).subscribe(
       () => {

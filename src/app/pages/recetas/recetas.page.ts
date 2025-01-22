@@ -11,20 +11,20 @@ import { RecipeDetailModalComponent } from '../../comoponents/recipe-detail-moda
   styleUrls: ['./recetas.page.scss'],
 })
 export class RecetasPage {
-  recipes: any[] = []; // Lista de recetas
+  recipes: any[] = []; 
 
   constructor(
     private recipesService: RecipesService,
-    private modalCtrl: ModalController, // Usar modalCtrl como nombre coherente
+    private modalCtrl: ModalController, 
     private favoritesService: FavoritesService
   ) {}
 
-  // Cargar las recetas al entrar a la página
+ 
   ionViewWillEnter(): void {
     this.loadRecipes();
   }
 
-  // Cargar todas las recetas
+ 
   loadRecipes(): void {
     this.recipesService.getRecipes().subscribe({
       next: (res) => {
@@ -51,23 +51,23 @@ export class RecetasPage {
     });
   }
 
-  // Abrir el modal para crear o editar recetas
+ 
   async openModal(recipe: any = null): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: ModalComponent,
-      componentProps: { recipe: { ...recipe } }, // Pasar la receta actual
+      componentProps: { recipe: { ...recipe } }, 
     });
 
     modal.onDidDismiss().then((result) => {
       if (result.role === 'saved' && result.data) {
         const updatedRecipe = result.data;
 
-        // Encuentra la receta en la lista y actualiza sus datos
+       
         const index = this.recipes.findIndex((r) => r.id === updatedRecipe.id);
         if (index !== -1) {
-          this.recipes[index] = updatedRecipe; // Actualiza la receta existente
+          this.recipes[index] = updatedRecipe; 
         } else {
-          // Si es una nueva receta, añádela a la lista
+         
           this.recipes.push(updatedRecipe);
         }
       }
@@ -76,11 +76,11 @@ export class RecetasPage {
     await modal.present();
   }
 
-  // Abrir el modal de detalle de receta
+  
   async openRecipeDetail(recipe: any): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: RecipeDetailModalComponent,
-      componentProps: { recipe }, // Pasar la receta al modal
+      componentProps: { recipe }, 
     });
 
     await modal.present();

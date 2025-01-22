@@ -16,7 +16,7 @@ import { RecipeDetailModalComponent } from '../../comoponents/recipe-detail-moda
     RecetasPageRoutingModule,
     RecipeCardModule, 
   ],
-  declarations: [RecetasPage, RecipeDetailModalComponent], // Declara el modal aquí
+  declarations: [RecetasPage, RecipeDetailModalComponent], 
 })
 export class RecetasPageModule {}
 

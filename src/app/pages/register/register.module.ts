@@ -10,7 +10,7 @@ import { RegisterPage } from './register.page';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule, // Importa ReactiveFormsModule aquí
+    ReactiveFormsModule, 
     IonicModule,
     RegisterPageRoutingModule
   ],
