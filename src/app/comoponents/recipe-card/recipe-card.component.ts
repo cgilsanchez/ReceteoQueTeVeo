@@ -7,16 +7,16 @@ import { FavoritesService } from '../../service/favorites.service';
   styleUrls: ['./recipe-card.component.scss'],
 })
 export class RecipeCardComponent {
-  @Input() recipe: any; // Recibe una receta desde el padre
-  @Output() openDetail = new EventEmitter<any>(); // Emite un evento para abrir el detalle
-  @Output() edit = new EventEmitter<any>(); // Emite un evento para editar
-  @Output() delete = new EventEmitter<number>(); // Emite un evento para eliminar
+  @Input() recipe: any; 
+  @Output() openDetail = new EventEmitter<any>(); 
+  @Output() edit = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<number>(); 
 
   constructor(private favoritesService: FavoritesService) {}
 
   // Método para alternar favoritos
   toggleFavorite(event: Event) {
-    event.stopPropagation(); // Evitar que el clic se propague al evento de abrir detalle
+    event.stopPropagation();
     if (this.isFavorite(this.recipe.id)) {
       this.favoritesService.removeFavorite(this.recipe.id);
     } else {
@@ -36,13 +36,13 @@ export class RecipeCardComponent {
 
   // Editar receta
   editRecipe(event: Event) {
-    event.stopPropagation(); // Evitar que el clic se propague al evento de abrir detalle
+    event.stopPropagation(); 
     this.edit.emit(this.recipe);
   }
 
   // Eliminar receta
   deleteRecipe(event: Event) {
-    event.stopPropagation(); // Evitar que el clic se propague al evento de abrir detalle
+    event.stopPropagation(); 
     this.delete.emit(this.recipe.id);
   }
 }

@@ -7,9 +7,9 @@ import { TranslationService } from 'src/app/service/translation.service';
   styleUrls: ['./chef-card.component.scss'],
 })
 export class ChefCardComponent {
-  @Input() chef: any; // Datos del chef
-  @Output() edit = new EventEmitter<void>(); // Evento para editar
-  @Output() delete = new EventEmitter<void>(); // Evento para borrar
+  @Input() chef: any; 
+  @Output() edit = new EventEmitter<void>(); 
+  @Output() delete = new EventEmitter<void>(); 
 
   constructor(private translationService: TranslationService) {}
 
@@ -18,10 +18,10 @@ export class ChefCardComponent {
   }
 
   onEdit() {
-    this.edit.emit(); // Emite evento de edición
+    this.edit.emit(); 
   }
 
   onDelete() {
-    this.delete.emit(); // Emite evento de eliminación
+    this.delete.emit(); 
   }
 }

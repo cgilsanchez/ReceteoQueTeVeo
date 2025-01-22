@@ -5,11 +5,11 @@ import { IonicModule } from '@ionic/angular';
 import { ChefModalComponent } from './chef-modal.component';
 
     @NgModule({
-    declarations: [ChefModalComponent], // Declara el componente aquí
+    declarations: [ChefModalComponent], 
     imports: [
         CommonModule,
         FormsModule,
-        IonicModule, // Importa IonicModule para que los componentes de Ionic sean reconocidos
+        IonicModule, 
     ],
     })
     export class ChefModalModule {}

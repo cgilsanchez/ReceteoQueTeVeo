@@ -33,13 +33,13 @@ export class ChefPage {
     const modal = await this.modalCtrl.create({
       component: ChefModalComponent,
       componentProps: {
-        chef: chef ? { ...chef } : { name: '' }, // Pasamos los datos del chef si se va a editar
+        chef: chef ? { ...chef } : { name: '' },
       },
     });
 
     modal.onDidDismiss().then((result) => {
       if (result.data) {
-        this.loadChefs(); // Recargamos la lista después de crear/editar un chef
+        this.loadChefs(); 
       }
     });
 

@@ -9,8 +9,8 @@ import { TranslationService } from '../../service/translation.service';
   styleUrls: ['./chef-modal.component.scss'],
 })
 export class ChefModalComponent {
-  @Input() chef: any = { name: '' }; // Recibe el chef a editar o uno nuevo por defecto
-  apiUrl = 'http://localhost:1337/api/chefs'; // URL de tu API en Strapi
+  @Input() chef: any = { name: '' }; 
+  apiUrl = 'http://localhost:1337/api/chefs'; 
 
   constructor(
     private modalCtrl: ModalController,
@@ -26,13 +26,13 @@ export class ChefModalComponent {
     if (this.chef.id) {
       // Actualizar chef existente
       this.http.put(`${this.apiUrl}/${this.chef.id}`, { data: { name: this.chef.name } }).subscribe(() => {
-        this.modalCtrl.dismiss(true); // Devuelve un indicador de éxito
+        this.modalCtrl.dismiss(true); 
       });
     } else {
       // Crear nuevo chef
       this.http.post(this.apiUrl, { data: { name: this.chef.name } }).subscribe(() => {
         alert(this.translationService.getTranslation('CHEFS.NEW_CHEF'));
-        this.modalCtrl.dismiss(true); // Devuelve un indicador de éxito
+        this.modalCtrl.dismiss(true); 
       });
     }
   }

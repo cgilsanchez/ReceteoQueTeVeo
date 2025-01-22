@@ -6,14 +6,14 @@ import { ModalComponent } from './modal.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  declarations: [ModalComponent], // Declara el componente del modal
+  declarations: [ModalComponent], 
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     TranslateModule,
-    ReactiveFormsModule, // Asegúrate de importar IonicModule
+    ReactiveFormsModule,
   ],
-  exports: [ModalComponent], // Exporta el componente para que otros módulos puedan usarlo
+  exports: [ModalComponent], 
 })
 export class ModalModule {}

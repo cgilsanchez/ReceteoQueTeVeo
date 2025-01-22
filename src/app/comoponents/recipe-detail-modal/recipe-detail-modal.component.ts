@@ -8,7 +8,7 @@ import { TranslationService } from 'src/app/service/translation.service';
   styleUrls: ['./recipe-detail-modal.component.scss'],
 })
 export class RecipeDetailModalComponent {
-  @Input() recipe: any; // Recibe la receta seleccionada
+  @Input() recipe: any; 
 
   constructor(private modalController: ModalController, public translationService: TranslationService) {}
 
