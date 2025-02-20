@@ -18,7 +18,7 @@
         state: RouterStateSnapshot
     ): Promise<boolean> {
         const isAuthenticated = await this.authService.isAuthenticated();
-        console.log('¿Está autenticado en el guard?:', isAuthenticated);
+        
 
         if (!isAuthenticated) {
         this.router.navigate(['/login']);

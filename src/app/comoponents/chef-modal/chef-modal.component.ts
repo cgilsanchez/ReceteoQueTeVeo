@@ -31,7 +31,7 @@ export class ChefModalComponent {
     } else {
       // Crear nuevo chef
       this.http.post(this.apiUrl, { data: { name: this.chef.name } }).subscribe(() => {
-        alert(this.translationService.getTranslation('CHEFS.NEW_CHEF'));
+        
         this.modalCtrl.dismiss(true); 
       });
     }
