@@ -84,18 +84,75 @@ ion-item {
   position: relative;
 }
 
-/* Ícono del ojo */
-.toggle-password-icon {
-  font-size: 20px;
-  color: #888; /* Color gris */
-  cursor: pointer;
+/* 📌 Contenedor del botón de idioma */
+.language-button-container {
   position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
+  top: 15px;
+  right: 15px;
+  z-index: 1050;
 }
 
-.toggle-password-icon:hover {
-  color: #ff9800; /* Cambiar a naranja al pasar el cursor */
+/* 📌 Botón de idioma */
+.language-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px; /* Tamaño ajustado */
+  height: 45px;
+  border-radius: 50%;
+  background-color: #ff9800 !important; /* 🔥 Fuerza el color naranja */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s ease-in-out;
+}
+
+.language-button:hover {
+  background-color: #e88e00 !important; /* 🔥 Fuerza el color más oscuro */
+}
+
+/* 📌 Icono dentro del botón */
+.language-icon {
+  font-size: 22px;
+  color: white !important; /* 🔥 Asegura que el icono sea blanco */
+}
+
+
+/* 📌 Menú desplegable */
+.language-dropdown {
+  position: absolute;
+  top: 50px; /* Se coloca debajo del botón */
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 5000;
+  width: 150px;
+  padding: 5px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 📌 Flecha arriba del menú */
+.arrow-up {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+}
+
+/* 📌 Estilos de los ítems dentro del menú */
+.language-dropdown ion-item {
+  font-size: 14px;
+  padding: 10px;
+  justify-content: center;
+}
+
+.language-dropdown ion-item:hover {
+  background-color: #f1f1f1;
 }

@@ -13,6 +13,7 @@ export class LoginPage {
   loginForm: FormGroup;
   errorMessage: string | null = null;
   showPassword: boolean = false;
+  showLanguageMenu = false;
   showSplash: boolean = false;
 
   constructor(
@@ -30,6 +31,16 @@ export class LoginPage {
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
+
+  toggleLanguageMenu(): void {
+    this.showLanguageMenu = !this.showLanguageMenu;
+  }
+
+  changeLanguage(lang: string): void {
+    this.translationService.setLanguage(lang);
+    this.showLanguageMenu = false;
+  }
+
 
   async onSubmit(): Promise<void> {
     if (this.loginForm.invalid) {

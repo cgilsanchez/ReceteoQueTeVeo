@@ -65,7 +65,7 @@ export class UsuarioPage implements OnInit {
     await alert.present();
   }
 
- 
+
   actualizarUsuario() {
     this.usuarioService.actualizarUsuario(this.usuario.id, this.usuario).subscribe(
       () => {

@@ -24,7 +24,7 @@ export class RecetasPage {
     this.loadRecipes();
   }
 
- 
+
   loadRecipes(): void {
     this.recipesService.getRecipes().subscribe({
       next: (res) => {

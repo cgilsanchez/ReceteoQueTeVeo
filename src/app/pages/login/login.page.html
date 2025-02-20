@@ -1,6 +1,24 @@
 <app-splash *ngIf="showSplash"></app-splash>
 
 <ion-content *ngIf="!showSplash">
+  <!-- Botón de cambio de idioma en el login -->
+  <div class="language-button-container">
+    <button (click)="toggleLanguageMenu()" class="language-button">
+      <ion-icon name="globe-outline" class="language-icon"></ion-icon>
+    </button>
+    <!-- Menú desplegable -->
+    <div *ngIf="showLanguageMenu" class="language-dropdown">
+      <div class="arrow-up"></div> <!-- Flecha arriba del menú -->
+      <ion-item button (click)="changeLanguage('en')">
+        <ion-label>English</ion-label>
+      </ion-item>
+      <ion-item button (click)="changeLanguage('es')">
+        <ion-label>Español</ion-label>
+      </ion-item>
+    </div>
+  </div>
+  
+
   <div class="auth-container">
     <div class="auth-card">
       <div class="auth-logo">
