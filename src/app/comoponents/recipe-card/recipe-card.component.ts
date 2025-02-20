@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FavoritesService } from '../../service/favorites.service';
+import { TranslationService } from 'src/app/service/translation.service';
 
 @Component({
   selector: 'app-recipe-card',
@@ -12,7 +13,7 @@ export class RecipeCardComponent {
   @Output() edit = new EventEmitter<any>();
   @Output() delete = new EventEmitter<number>(); 
 
-  constructor(private favoritesService: FavoritesService) {}
+  constructor(private favoritesService: FavoritesService,public translationService: TranslationService) {}
 
   // Método para alternar favoritos
   toggleFavorite(event: Event) {

@@ -12,6 +12,7 @@ import { TranslationService } from './service/translation.service';
 export class AppComponent {
   showMenu: boolean = false;
   currentLanguage: string = 'es';
+  showLanguageMenu: boolean = false; 
 
   constructor(
     private router: Router,
@@ -45,9 +46,14 @@ export class AppComponent {
     }
   }
 
+  toggleLanguageMenu(): void {
+    this.showLanguageMenu = !this.showLanguageMenu;
+  }
+
   changeLanguage(lang: string): void {
     this.translationService.setLanguage(lang);
     this.currentLanguage = lang;
+    this.showLanguageMenu = false; // Ocultar el menú al seleccionar
   }
 
   closeMenu(): void {

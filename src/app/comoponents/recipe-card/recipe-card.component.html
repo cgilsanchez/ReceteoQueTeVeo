@@ -4,11 +4,20 @@
   </div>
   <ion-card-header>
     <ion-card-title>{{ recipe.name }}</ion-card-title>
-    <ion-card-subtitle>Chef: {{ recipe.chef?.name || 'Sin Chef' }}</ion-card-subtitle>
+    <ion-card-subtitle>
+      {{ translationService.getTranslation('RECIPES.CHEF') }}: 
+      {{ recipe.chef?.name || translationService.getTranslation('RECIPES.NO_CHEF') }}
+    </ion-card-subtitle>
   </ion-card-header>
   <ion-card-content>
-    <p><strong>Ingredientes:</strong> {{ recipe.ingredients }}</p>
-    <p><strong>Descripción:</strong> {{ recipe.descriptions }}</p>
+    <p>
+      <strong>{{ translationService.getTranslation('RECIPES.INGREDIENTS') }}:</strong> 
+      {{ recipe.ingredients }}
+    </p>
+    <p>
+      <strong>{{ translationService.getTranslation('RECIPES.DESCRIPTION') }}:</strong> 
+      {{ recipe.descriptions }}
+    </p>
   </ion-card-content>
   <div class="buttons">
     <ion-button color="primary" (click)="editRecipe($event)">
